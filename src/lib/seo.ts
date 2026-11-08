@@ -8,7 +8,7 @@ export function pageMeta({
 }: {
   title: string;
   description: string;
-  image?: string;
+  image?: string | undefined;
   type?: "website" | "product" | "article";
 }) {
   const meta: Array<Record<string, string>> = [
