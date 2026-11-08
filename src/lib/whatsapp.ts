@@ -6,9 +6,9 @@ export function whatsappUrl(message: string, phone: string = SITE.whatsappNumber
 
 export interface OrderLine {
   title: string;
-  quantity?: number;
-  option?: string | null;
-  url?: string;
+  quantity?: number | undefined;
+  option?: string | null | undefined;
+  url?: string | undefined;
 }
 
 export function productOrderMessage(line: OrderLine): string {
