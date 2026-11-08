@@ -14,8 +14,12 @@ import { Route as AnniversarySpecialsRouteImport } from './routes/anniversary-sp
 import { Route as BirthdaySpecialsRouteImport } from './routes/birthday-specials'
 import { Route as CakesRouteImport } from './routes/cakes'
 import { Route as CombosRouteImport } from './routes/combos'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CustomOrdersRouteImport } from './routes/custom-orders'
 import { Route as FlowerBouquetsRouteImport } from './routes/flower-bouquets'
 import { Route as ShopRouteImport } from './routes/shop'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as ProductHandleRouteImport } from './routes/product.$handle'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -42,6 +46,16 @@ const CombosRoute = CombosRouteImport.update({
   path: '/combos',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomOrdersRoute = CustomOrdersRouteImport.update({
+  id: '/custom-orders',
+  path: '/custom-orders',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FlowerBouquetsRoute = FlowerBouquetsRouteImport.update({
   id: '/flower-bouquets',
   path: '/flower-bouquets',
@@ -52,6 +66,16 @@ const ShopRoute = ShopRouteImport.update({
   path: '/shop',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductHandleRoute = ProductHandleRouteImport.update({
+  id: '/product/$handle',
+  path: '/product/$handle',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -59,8 +83,12 @@ export interface FileRoutesByFullPath {
   '/birthday-specials': typeof BirthdaySpecialsRoute
   '/cakes': typeof CakesRoute
   '/combos': typeof CombosRoute
+  '/contact': typeof ContactRoute
+  '/custom-orders': typeof CustomOrdersRoute
   '/flower-bouquets': typeof FlowerBouquetsRoute
   '/shop': typeof ShopRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/product/$handle': typeof ProductHandleRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -68,8 +96,12 @@ export interface FileRoutesByTo {
   '/birthday-specials': typeof BirthdaySpecialsRoute
   '/cakes': typeof CakesRoute
   '/combos': typeof CombosRoute
+  '/contact': typeof ContactRoute
+  '/custom-orders': typeof CustomOrdersRoute
   '/flower-bouquets': typeof FlowerBouquetsRoute
   '/shop': typeof ShopRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/product/$handle': typeof ProductHandleRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -78,8 +110,12 @@ export interface FileRoutesById {
   '/birthday-specials': typeof BirthdaySpecialsRoute
   '/cakes': typeof CakesRoute
   '/combos': typeof CombosRoute
+  '/contact': typeof ContactRoute
+  '/custom-orders': typeof CustomOrdersRoute
   '/flower-bouquets': typeof FlowerBouquetsRoute
   '/shop': typeof ShopRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/product/$handle': typeof ProductHandleRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -89,8 +125,12 @@ export interface FileRouteTypes {
     | '/birthday-specials'
     | '/cakes'
     | '/combos'
+    | '/contact'
+    | '/custom-orders'
     | '/flower-bouquets'
     | '/shop'
+    | '/sitemap.xml'
+    | '/product/$handle'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -98,8 +138,12 @@ export interface FileRouteTypes {
     | '/birthday-specials'
     | '/cakes'
     | '/combos'
+    | '/contact'
+    | '/custom-orders'
     | '/flower-bouquets'
     | '/shop'
+    | '/sitemap.xml'
+    | '/product/$handle'
   id:
     | '__root__'
     | '/'
@@ -107,8 +151,12 @@ export interface FileRouteTypes {
     | '/birthday-specials'
     | '/cakes'
     | '/combos'
+    | '/contact'
+    | '/custom-orders'
     | '/flower-bouquets'
     | '/shop'
+    | '/sitemap.xml'
+    | '/product/$handle'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -117,8 +165,12 @@ export interface RootRouteChildren {
   BirthdaySpecialsRoute: typeof BirthdaySpecialsRoute
   CakesRoute: typeof CakesRoute
   CombosRoute: typeof CombosRoute
+  ContactRoute: typeof ContactRoute
+  CustomOrdersRoute: typeof CustomOrdersRoute
   FlowerBouquetsRoute: typeof FlowerBouquetsRoute
   ShopRoute: typeof ShopRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  ProductHandleRoute: typeof ProductHandleRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -158,6 +210,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CombosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/custom-orders': {
+      id: '/custom-orders'
+      path: '/custom-orders'
+      fullPath: '/custom-orders'
+      preLoaderRoute: typeof CustomOrdersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/flower-bouquets': {
       id: '/flower-bouquets'
       path: '/flower-bouquets'
@@ -172,6 +238,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShopRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/product/$handle': {
+      id: '/product/$handle'
+      path: '/product/$handle'
+      fullPath: '/product/$handle'
+      preLoaderRoute: typeof ProductHandleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -181,8 +261,12 @@ const rootRouteChildren: RootRouteChildren = {
   BirthdaySpecialsRoute: BirthdaySpecialsRoute,
   CakesRoute: CakesRoute,
   CombosRoute: CombosRoute,
+  ContactRoute: ContactRoute,
+  CustomOrdersRoute: CustomOrdersRoute,
   FlowerBouquetsRoute: FlowerBouquetsRoute,
   ShopRoute: ShopRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
+  ProductHandleRoute: ProductHandleRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
