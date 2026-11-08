@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AnniversarySpecialsRouteImport } from './routes/anniversary-specials'
+import { Route as BirthdaySpecialsRouteImport } from './routes/birthday-specials'
+import { Route as CakesRouteImport } from './routes/cakes'
+import { Route as CombosRouteImport } from './routes/combos'
+import { Route as FlowerBouquetsRouteImport } from './routes/flower-bouquets'
+import { Route as ShopRouteImport } from './routes/shop'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AnniversarySpecialsRoute = AnniversarySpecialsRouteImport.update({
+  id: '/anniversary-specials',
+  path: '/anniversary-specials',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BirthdaySpecialsRoute = BirthdaySpecialsRouteImport.update({
+  id: '/birthday-specials',
+  path: '/birthday-specials',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CakesRoute = CakesRouteImport.update({
+  id: '/cakes',
+  path: '/cakes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CombosRoute = CombosRouteImport.update({
+  id: '/combos',
+  path: '/combos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FlowerBouquetsRoute = FlowerBouquetsRouteImport.update({
+  id: '/flower-bouquets',
+  path: '/flower-bouquets',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShopRoute = ShopRouteImport.update({
+  id: '/shop',
+  path: '/shop',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/anniversary-specials': typeof AnniversarySpecialsRoute
+  '/birthday-specials': typeof BirthdaySpecialsRoute
+  '/cakes': typeof CakesRoute
+  '/combos': typeof CombosRoute
+  '/flower-bouquets': typeof FlowerBouquetsRoute
+  '/shop': typeof ShopRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/anniversary-specials': typeof AnniversarySpecialsRoute
+  '/birthday-specials': typeof BirthdaySpecialsRoute
+  '/cakes': typeof CakesRoute
+  '/combos': typeof CombosRoute
+  '/flower-bouquets': typeof FlowerBouquetsRoute
+  '/shop': typeof ShopRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/anniversary-specials': typeof AnniversarySpecialsRoute
+  '/birthday-specials': typeof BirthdaySpecialsRoute
+  '/cakes': typeof CakesRoute
+  '/combos': typeof CombosRoute
+  '/flower-bouquets': typeof FlowerBouquetsRoute
+  '/shop': typeof ShopRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/anniversary-specials'
+    | '/birthday-specials'
+    | '/cakes'
+    | '/combos'
+    | '/flower-bouquets'
+    | '/shop'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/anniversary-specials'
+    | '/birthday-specials'
+    | '/cakes'
+    | '/combos'
+    | '/flower-bouquets'
+    | '/shop'
+  id:
+    | '__root__'
+    | '/'
+    | '/anniversary-specials'
+    | '/birthday-specials'
+    | '/cakes'
+    | '/combos'
+    | '/flower-bouquets'
+    | '/shop'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AnniversarySpecialsRoute: typeof AnniversarySpecialsRoute
+  BirthdaySpecialsRoute: typeof BirthdaySpecialsRoute
+  CakesRoute: typeof CakesRoute
+  CombosRoute: typeof CombosRoute
+  FlowerBouquetsRoute: typeof FlowerBouquetsRoute
+  ShopRoute: typeof ShopRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +130,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/anniversary-specials': {
+      id: '/anniversary-specials'
+      path: '/anniversary-specials'
+      fullPath: '/anniversary-specials'
+      preLoaderRoute: typeof AnniversarySpecialsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/birthday-specials': {
+      id: '/birthday-specials'
+      path: '/birthday-specials'
+      fullPath: '/birthday-specials'
+      preLoaderRoute: typeof BirthdaySpecialsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cakes': {
+      id: '/cakes'
+      path: '/cakes'
+      fullPath: '/cakes'
+      preLoaderRoute: typeof CakesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/combos': {
+      id: '/combos'
+      path: '/combos'
+      fullPath: '/combos'
+      preLoaderRoute: typeof CombosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/flower-bouquets': {
+      id: '/flower-bouquets'
+      path: '/flower-bouquets'
+      fullPath: '/flower-bouquets'
+      preLoaderRoute: typeof FlowerBouquetsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shop': {
+      id: '/shop'
+      path: '/shop'
+      fullPath: '/shop'
+      preLoaderRoute: typeof ShopRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AnniversarySpecialsRoute: AnniversarySpecialsRoute,
+  BirthdaySpecialsRoute: BirthdaySpecialsRoute,
+  CakesRoute: CakesRoute,
+  CombosRoute: CombosRoute,
+  FlowerBouquetsRoute: FlowerBouquetsRoute,
+  ShopRoute: ShopRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
