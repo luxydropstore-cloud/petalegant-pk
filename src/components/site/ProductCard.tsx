@@ -43,7 +43,7 @@ export function ProductCard({ product, priority = false }: { product: ShopifyPro
       >
         {image && (
           <img
-            src={`${image.url}${image.url.includes("?") ? "&" : "?"}width=700`}
+            src={image.url.startsWith("https://cdn.shopify.com") ? `${image.url}${image.url.includes("?") ? "&" : "?"}width=700` : image.url}
             alt={image.altText ?? p.title}
             loading={priority ? "eager" : "lazy"}
             width={700}
@@ -71,6 +71,7 @@ export function ProductCard({ product, priority = false }: { product: ShopifyPro
           <Button variant="whatsapp" size="sm" className="h-10 flex-1 px-3" onClick={handleOrder}>
             <WhatsAppIcon /> Order Now
           </Button>
+          {variant && (
           <Button
             variant="soft"
             size="icon"
@@ -81,6 +82,7 @@ export function ProductCard({ product, priority = false }: { product: ShopifyPro
           >
             {isLoading ? <Loader2 className="animate-spin" /> : <ShoppingBag />}
           </Button>
+          )}
         </div>
       </div>
     </article>

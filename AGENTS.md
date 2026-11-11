@@ -28,3 +28,4 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+- Product lists fall back to the local catalog in src/lib/catalog.ts (owner photos, WhatsApp-only, no variants) whenever Shopify returns no products — so the shop is never empty while the store has no items.
