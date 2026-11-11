@@ -23,7 +23,9 @@ export const Route = createFileRoute("/product/$handle")({
       return { meta: [{ title: "Product unavailable | Petalegant" }, { name: "robots", content: "noindex" }] };
     }
     const p = loaderData.node;
-    const image = p.images.edges[0]?.node?.url;
+    const firstImage = p.images.edges[0]?.node?.url;
+    // Only absolute image URLs work for link previews.
+    const image = firstImage?.startsWith("https://") ? firstImage : undefined;
     const description =
       (p.description || `${p.title} by Petalegant`).slice(0, 150) + ` Delivery in ${SITE.city}.`;
     return {
@@ -36,7 +38,7 @@ export const Route = createFileRoute("/product/$handle")({
             "@type": "Product",
             name: p.title,
             description: p.description,
-            image: p.images.edges.map((e) => e.node.url),
+            image: p.images.edges.map((e) => e.node.url).filter((u) => u.startsWith("https://")),
             brand: { "@type": "Brand", name: SITE.name },
             category: p.productType,
           }),
@@ -169,9 +171,11 @@ function ProductPage() {
             <Button variant="whatsapp" size="xl" className="flex-1" onClick={handleOrder}>
               <WhatsAppIcon className="h-5 w-5" /> Order on WhatsApp
             </Button>
-            <Button variant="heroOutline" size="xl" className="flex-1" onClick={handleAdd} disabled={isLoading || !variant}>
-              {isLoading ? <Loader2 className="animate-spin" /> : <><ShoppingBag /> Add to cart</>}
-            </Button>
+            {variant && (
+              <Button variant="heroOutline" size="xl" className="flex-1" onClick={handleAdd} disabled={isLoading}>
+                {isLoading ? <Loader2 className="animate-spin" /> : <><ShoppingBag /> Add to cart</>}
+              </Button>
+            )}
           </div>
 
           <ul className="mt-10 space-y-4 border-t border-border pt-8 text-sm text-foreground/80">

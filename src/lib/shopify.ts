@@ -1,5 +1,6 @@
 import { queryOptions } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { filterLocalProducts, findLocalProduct } from "@/lib/catalog";
 
 export const SHOPIFY_API_VERSION = "2026-10";
 export const SHOPIFY_STORE_PERMANENT_DOMAIN = "seo-website-studio-nm5mq-7wbuv6en.myshopify.com";
@@ -105,10 +106,12 @@ export async function storefrontApiRequest(query: string, variables: Record<stri
 export async function fetchProducts(query?: string, first = 50): Promise<ShopifyProduct[]> {
   try {
     const data = await storefrontApiRequest(PRODUCTS_QUERY, { first, query: query ?? null });
-    return data?.data?.products?.edges ?? [];
+    const edges: ShopifyProduct[] = data?.data?.products?.edges ?? [];
+    // Until products are added in Shopify, show the owner's own designs.
+    return edges.length > 0 ? edges : filterLocalProducts(query);
   } catch (error) {
     console.error("Failed to load products:", error);
-    return [];
+    return filterLocalProducts(query);
   }
 }
 
@@ -116,10 +119,10 @@ export async function fetchProductByHandle(handle: string): Promise<ShopifyProdu
   try {
     const data = await storefrontApiRequest(PRODUCT_BY_HANDLE_QUERY, { handle });
     const product = data?.data?.product;
-    return product ? { node: product } : null;
+    return product ? { node: product } : findLocalProduct(handle);
   } catch (error) {
     console.error("Failed to load product:", error);
-    return null;
+    return findLocalProduct(handle);
   }
 }
 
