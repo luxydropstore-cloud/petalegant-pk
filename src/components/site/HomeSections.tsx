@@ -7,11 +7,9 @@ import { SectionHeading } from "./SectionHeading";
 import { Leaf } from "./Leaf";
 import { InstagramIcon, WhatsAppIcon } from "./WhatsAppIcon";
 
-import heroImg from "@/assets/hero-bouquet-cake.jpg";
-import comboImg from "@/assets/combos/combo-rose-redvelvet.jpg";
-import birthdayImg from "@/assets/moment-birthday.jpg";
-import anniversaryImg from "@/assets/moment-anniversary.jpg";
-import surpriseImg from "@/assets/moment-surprise.jpg";
+import comboRedRoses from "@/assets/combos/combo-red-roses-chocolate.webp.asset.json";
+import comboSingleRose from "@/assets/combos/combo-single-rose-chocolate.webp.asset.json";
+import comboSunflower from "@/assets/combos/combo-sunflower-floral-cake.webp.asset.json";
 import g1 from "@/assets/gallery/petalegant-1.webp.asset.json";
 import g2 from "@/assets/gallery/petalegant-2.webp.asset.json";
 import g3 from "@/assets/gallery/petalegant-3.webp.asset.json";
@@ -23,41 +21,42 @@ import g7 from "@/assets/gallery/petalegant-7.webp.asset.json";
 export function Hero() {
   return (
     <section className="relative overflow-hidden bg-background">
-      <div className="relative">
-        <img
-          src={heroImg}
-          alt="Red rose bouquet beside an elegant white cake with rose petals"
-          width={1920}
-          height={1088}
-          fetchPriority="high"
-          className="h-[52vh] w-full object-cover object-left md:h-[calc(100vh-7.25rem)] md:max-h-[820px] md:min-h-[560px]"
-        />
-        <div className="container-page md:absolute md:inset-0 md:flex md:items-center md:justify-end">
-          <div className="relative z-10 -mt-16 rounded-lg bg-background px-6 py-9 shadow-elegant md:mt-0 md:max-w-[34rem] md:bg-background/85 md:px-12 md:py-14 md:shadow-none md:backdrop-blur-[2px]">
-            <p className="eyebrow animate-fade-up flex items-center gap-2">
-              <Leaf className="h-3.5 w-3.5" /> Flowers & cakes · {SITE.city}
-            </p>
-            <h1 className="animate-fade-up mt-4 text-[2.6rem] leading-[1.02] text-primary-deep [animation-delay:120ms] md:text-[4rem]">
-              Make Every Moment a Little More Beautiful
-            </h1>
-            <p className="animate-fade-up mt-5 text-base leading-relaxed text-muted-foreground [animation-delay:240ms] md:text-lg">
-              Thoughtful flowers and delicious cakes, beautifully paired for every celebration.
-            </p>
-            <div className="animate-fade-up mt-8 flex flex-col gap-3 [animation-delay:360ms] sm:flex-row">
-              <Button variant="hero" size="xl" asChild>
-                <Link to="/combos">
-                  Shop Combos <ArrowRight />
-                </Link>
-              </Button>
-              <Button variant="heroOutline" size="xl" asChild>
-                <Link to="/flower-bouquets">Explore Bouquets</Link>
-              </Button>
-            </div>
-            <p className="animate-fade-up mt-6 text-sm text-foreground/70 [animation-delay:480ms]">
-              Starting from <span className="font-medium text-primary">{SITE.startingPrice}</span> ·
-              Customised cakes & bouquets available
-            </p>
+      <div className="container-page grid items-center gap-10 py-10 md:grid-cols-2 md:gap-14 md:py-16 lg:py-20">
+        <div className="relative order-1 md:order-2">
+          <div className="absolute -inset-3 -z-0 rounded-lg bg-primary-soft/60 md:-inset-5" aria-hidden />
+          <img
+            src={comboRedRoses.url}
+            alt="Red rose bouquet with a chocolate Happy Birthday cake by Petalegant"
+            width={1215}
+            height={1295}
+            fetchPriority="high"
+            className="relative aspect-[15/16] w-full rounded-lg object-cover shadow-elegant"
+          />
+        </div>
+        <div className="order-2 md:order-1">
+          <p className="eyebrow animate-fade-up flex items-center gap-2">
+            <Leaf className="h-3.5 w-3.5" /> Flowers & cakes · {SITE.city}
+          </p>
+          <h1 className="animate-fade-up mt-4 text-[2.6rem] leading-[1.02] text-primary-deep [animation-delay:120ms] md:text-[3.6rem] lg:text-[4.2rem]">
+            Make Every Moment a Little More Beautiful
+          </h1>
+          <p className="animate-fade-up mt-5 max-w-md text-base leading-relaxed text-muted-foreground [animation-delay:240ms] md:text-lg">
+            Thoughtful flowers and delicious cakes, beautifully paired for every celebration.
+          </p>
+          <div className="animate-fade-up mt-8 flex flex-col gap-3 [animation-delay:360ms] sm:flex-row">
+            <Button variant="hero" size="xl" asChild>
+              <Link to="/combos">
+                Shop Combos <ArrowRight />
+              </Link>
+            </Button>
+            <Button variant="heroOutline" size="xl" asChild>
+              <Link to="/flower-bouquets">Explore Bouquets</Link>
+            </Button>
           </div>
+          <p className="animate-fade-up mt-6 text-sm text-foreground/70 [animation-delay:480ms]">
+            Starting from <span className="font-medium text-primary">{SITE.startingPrice}</span> ·
+            Customised cakes & bouquets available
+          </p>
         </div>
       </div>
     </section>
@@ -65,11 +64,11 @@ export function Hero() {
 }
 
 const CATEGORIES = [
-  { to: "/combos", label: "Flower + Cake Combos", img: comboImg, w: 1024, h: 1024 },
+  { to: "/combos", label: "Flower + Cake Combos", img: comboSingleRose.url, w: 1215, h: 1295 },
   { to: "/flower-bouquets", label: "Flower Bouquets", img: g1.url, w: 900, h: 900 },
   { to: "/cakes", label: "Cakes", img: g4.url, w: 900, h: 900 },
-  { to: "/birthday-specials", label: "Birthday Specials", img: birthdayImg, w: 896, h: 1152 },
-  { to: "/anniversary-specials", label: "Anniversary Specials", img: anniversaryImg, w: 896, h: 1152 },
+  { to: "/birthday-specials", label: "Birthday Specials", img: comboSunflower.url, w: 1312, h: 1199 },
+  { to: "/anniversary-specials", label: "Anniversary Specials", img: g6.url, w: 900, h: 900 },
 ] as const;
 
 export function ShopByCategory() {
@@ -138,10 +137,10 @@ export function WhyChoose() {
 }
 
 const MOMENTS = [
-  { title: "Birthdays", text: "Make their day with blooms and a cake made for candles.", img: birthdayImg, to: "/birthday-specials" },
-  { title: "Anniversaries", text: "Red roses and something sweet to celebrate your story.", img: anniversaryImg, to: "/anniversary-specials" },
-  { title: "Surprises", text: "A doorstep surprise that says you were thinking of them.", img: surpriseImg, to: "/combos" },
-  { title: "Everyday celebrations", text: "Because a Tuesday can be beautiful too.", img: heroImg, to: "/shop" },
+  { title: "Birthdays", text: "Make their day with blooms and a cake made for candles.", img: g4.url, to: "/birthday-specials" },
+  { title: "Anniversaries", text: "Red roses and something sweet to celebrate your story.", img: g6.url, to: "/anniversary-specials" },
+  { title: "Surprises", text: "A doorstep surprise that says you were thinking of them.", img: comboRedRoses.url, to: "/combos" },
+  { title: "Everyday celebrations", text: "Because a Tuesday can be beautiful too.", img: g2.url, to: "/shop" },
 ] as const;
 
 export function SpecialMoments() {
@@ -217,7 +216,7 @@ export function HowToOrder() {
   );
 }
 
-const GALLERY = [g1, g4, g3, g6, g2, g7, g5];
+const GALLERY = [comboRedRoses, g1, g4, comboSunflower, g3, g6, comboSingleRose, g2];
 
 export function InstagramSection() {
   return (
@@ -228,7 +227,7 @@ export function InstagramSection() {
         intro="Fresh designs, new combos and behind-the-scenes from our studio."
       />
       <div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
-        {GALLERY.slice(0, 8).map((g, i) => (
+        {GALLERY.map((g, i) => (
           <a
             key={g.asset_id}
             href={SITE.instagramUrl}
