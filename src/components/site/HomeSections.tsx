@@ -253,7 +253,7 @@ export function InstagramSection() {
           href={SITE.instagramUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex aspect-square flex-col items-center justify-center gap-3 rounded-lg bg-primary text-center text-primary-foreground transition-colors hover:bg-primary-deep"
+          className="col-span-2 flex aspect-[2/1] flex-col items-center justify-center gap-3 rounded-lg bg-primary md:col-span-1 md:aspect-square text-center text-primary-foreground transition-colors hover:bg-primary-deep"
         >
           <InstagramIcon className="h-8 w-8" />
           <span className="font-display text-2xl">Follow us</span>
