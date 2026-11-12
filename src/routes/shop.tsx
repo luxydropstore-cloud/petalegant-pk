@@ -1,17 +1,24 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { productsQueryOptions } from "@/lib/shopify";
-import { pageMeta } from "@/lib/seo";
+import { breadcrumbJsonLd, collectionJsonLd, pageHead } from "@/lib/seo";
 import { CollectionPage, SeoCopy } from "@/components/site/CollectionPage";
 
 export const Route = createFileRoute("/shop")({
   loader: ({ context }) => context.queryClient.ensureQueryData(productsQueryOptions()),
-  head: () => ({
-    meta: pageMeta({
+  head: ({ loaderData }) =>
+    pageHead({
       title: "Shop Flowers, Cakes & Combos in Karachi | Petalegant",
       description:
         "Browse Petalegant's full collection of flower bouquets, celebration cakes and flower + cake combos. Delivery across Karachi, starting from PKR 2,500.",
+      path: "/shop",
+      jsonLd: [
+        breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Shop All", path: "/shop" },
+        ]),
+        collectionJsonLd("Shop All", "/shop", loaderData ?? []),
+      ],
     }),
-  }),
   component: ShopPage,
 });
 

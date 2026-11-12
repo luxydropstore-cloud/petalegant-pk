@@ -1,19 +1,26 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { productsQueryOptions } from "@/lib/shopify";
-import { pageMeta } from "@/lib/seo";
+import { breadcrumbJsonLd, collectionJsonLd, pageHead } from "@/lib/seo";
 import { CollectionPage, SeoCopy } from "@/components/site/CollectionPage";
 
 const QUERY = "product_type:Bouquet";
 
 export const Route = createFileRoute("/flower-bouquets")({
   loader: ({ context }) => context.queryClient.ensureQueryData(productsQueryOptions(QUERY)),
-  head: () => ({
-    meta: pageMeta({
+  head: ({ loaderData }) =>
+    pageHead({
       title: "Flower Bouquets Delivery in Karachi | Roses & More | Petalegant",
       description:
         "Elegant hand-wrapped flower bouquets in Karachi — red roses, pink roses, sunflowers and more. Starting from PKR 2,500. Custom bouquets available.",
+      path: "/flower-bouquets",
+      jsonLd: [
+        breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Flower Bouquets", path: "/flower-bouquets" },
+        ]),
+        collectionJsonLd("Flower Bouquets", "/flower-bouquets", loaderData ?? []),
+      ],
     }),
-  }),
   component: BouquetsPage,
 });
 

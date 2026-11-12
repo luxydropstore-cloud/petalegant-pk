@@ -5,20 +5,20 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { pageMeta } from "@/lib/seo";
+import { pageHead } from "@/lib/seo";
 import { SITE } from "@/config/site";
 import { whatsappUrl, generalMessage } from "@/lib/whatsapp";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { InstagramIcon, WhatsAppIcon } from "@/components/site/WhatsAppIcon";
 
 export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: pageMeta({
+  head: () =>
+    pageHead({
       title: "Contact Petalegant | Order Flowers & Cakes in Karachi",
       description:
         "Contact Petalegant on WhatsApp or Instagram to order flower bouquets, cakes and combos in Karachi, or to request a customised design.",
+      path: "/contact",
     }),
-  }),
   component: ContactPage,
 });
 

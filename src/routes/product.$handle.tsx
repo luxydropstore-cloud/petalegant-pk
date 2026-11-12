@@ -4,8 +4,9 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { ChevronRight, Loader2, ShoppingBag, Sparkles, Truck } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
-import { productQueryOptions } from "@/lib/shopify";
-import { pageMeta } from "@/lib/seo";
+import { productQueryOptions, productsQueryOptions } from "@/lib/shopify";
+import { absoluteUrl, breadcrumbJsonLd, pageHead, PRODUCT_TYPE_CATEGORY } from "@/lib/seo";
+import { ProductGrid } from "@/components/site/ProductGrid";
 import { SITE } from "@/config/site";
 import { useCartStore } from "@/stores/cartStore";
 import { productOrderMessage, whatsappUrl } from "@/lib/whatsapp";
@@ -16,44 +17,75 @@ export const Route = createFileRoute("/product/$handle")({
   loader: async ({ context, params }) => {
     const product = await context.queryClient.ensureQueryData(productQueryOptions(params.handle));
     if (!product) throw notFound();
-    return product;
+    const category = PRODUCT_TYPE_CATEGORY[product.node.productType];
+    // Preload "You may also like" so it is in the server-rendered page.
+    await context.queryClient.ensureQueryData(productsQueryOptions(relatedQuery(product.node.productType)));
+    return { product, category };
   },
-  head: ({ loaderData }) => {
+  head: ({ loaderData, params }) => {
     if (!loaderData) {
       return { meta: [{ title: "Product unavailable | Petalegant" }, { name: "robots", content: "noindex" }] };
     }
-    const p = loaderData.node;
-    const firstImage = p.images.edges[0]?.node?.url;
-    // Only absolute image URLs work for link previews.
-    const image = firstImage?.startsWith("https://") ? firstImage : undefined;
+    const p = loaderData.product.node;
+    const path = `/product/${params.handle}`;
+    const images = p.images.edges.map((e) => absoluteUrl(e.node.url));
     const description =
       (p.description || `${p.title} by Petalegant`).slice(0, 150) + ` Delivery in ${SITE.city}.`;
-    return {
-      meta: pageMeta({ title: `${p.title} | Petalegant Karachi`, description, image, type: "product" }),
-      scripts: [
+    const crumbs = [
+      { name: "Home", path: "/" },
+      loaderData.category ?? { name: "Shop", path: "/shop" },
+      { name: p.title, path },
+    ];
+    return pageHead({
+      title: `${p.title} | Petalegant Karachi`,
+      description,
+      path,
+      image: images[0],
+      type: "product",
+      jsonLd: [
         {
-          type: "application/ld+json",
-          children: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Product",
-            name: p.title,
-            description: p.description,
-            image: p.images.edges.map((e) => e.node.url).filter((u) => u.startsWith("https://")),
-            brand: { "@type": "Brand", name: SITE.name },
-            category: p.productType,
-          }),
+          "@context": "https://schema.org",
+          "@type": "Product",
+          name: p.title,
+          description: p.description,
+          url: absoluteUrl(path),
+          image: images,
+          brand: { "@type": "Brand", name: SITE.name },
+          category: p.productType,
         },
+        breadcrumbJsonLd(crumbs),
       ],
-    };
+    });
   },
   component: ProductPage,
 });
+
+function relatedQuery(productType: string) {
+  return productType ? `product_type:${productType}` : undefined;
+}
+
+function RelatedProducts({ handle, productType }: { handle: string; productType: string }) {
+  const { data } = useSuspenseQuery(productsQueryOptions(relatedQuery(productType)));
+  const related = data.filter((r) => r.node.handle !== handle).slice(0, 3);
+  if (related.length === 0) return null;
+  return (
+    <section aria-labelledby="related-heading" className="mt-20 border-t border-border pt-14">
+      <h2 id="related-heading" className="text-center text-3xl text-primary-deep md:text-4xl">
+        You may also like
+      </h2>
+      <div className="mt-10">
+        <ProductGrid products={related} />
+      </div>
+    </section>
+  );
+}
 
 function ProductPage() {
   const { handle } = Route.useParams();
   const { data } = useSuspenseQuery(productQueryOptions(handle));
   const product = data!;
   const p = product.node;
+  const category = PRODUCT_TYPE_CATEGORY[p.productType];
   const variants = p.variants.edges.map((e) => e.node);
   const [variantId, setVariantId] = useState(variants[0]?.id);
   const [activeImage, setActiveImage] = useState(0);
@@ -98,7 +130,11 @@ function ProductPage() {
       <nav aria-label="Breadcrumb" className="mb-8 flex items-center gap-1.5 text-xs tracking-wide text-muted-foreground">
         <Link to="/" className="hover:text-primary">Home</Link>
         <ChevronRight className="h-3 w-3" />
-        <Link to="/shop" className="hover:text-primary">Shop</Link>
+        {category ? (
+          <Link to={category.path} className="hover:text-primary">{category.name}</Link>
+        ) : (
+          <Link to="/shop" className="hover:text-primary">Shop</Link>
+        )}
         <ChevronRight className="h-3 w-3" />
         <span className="truncate text-foreground">{p.title}</span>
       </nav>
@@ -199,6 +235,8 @@ function ProductPage() {
           </p>
         </div>
       </div>
+
+      <RelatedProducts handle={p.handle} productType={p.productType} />
     </div>
   );
 }

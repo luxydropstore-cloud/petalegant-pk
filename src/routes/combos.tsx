@@ -1,19 +1,26 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { productsQueryOptions } from "@/lib/shopify";
-import { pageMeta } from "@/lib/seo";
+import { breadcrumbJsonLd, collectionJsonLd, pageHead } from "@/lib/seo";
 import { CollectionPage, SeoCopy } from "@/components/site/CollectionPage";
 
 const QUERY = "tag:combo";
 
 export const Route = createFileRoute("/combos")({
   loader: ({ context }) => context.queryClient.ensureQueryData(productsQueryOptions(QUERY)),
-  head: () => ({
-    meta: pageMeta({
+  head: ({ loaderData }) =>
+    pageHead({
       title: "Flower & Cake Combo Deals in Karachi | Petalegant",
       description:
         "Affordable flower + cake combos in Karachi — a fresh bouquet paired with a delicious cake. Starting from PKR 2,500. Order on WhatsApp.",
+      path: "/combos",
+      jsonLd: [
+        breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Combos", path: "/combos" },
+        ]),
+        collectionJsonLd("Combos", "/combos", loaderData ?? []),
+      ],
     }),
-  }),
   component: CombosPage,
 });
 

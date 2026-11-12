@@ -1,19 +1,26 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { productsQueryOptions } from "@/lib/shopify";
-import { pageMeta } from "@/lib/seo";
+import { breadcrumbJsonLd, collectionJsonLd, pageHead } from "@/lib/seo";
 import { CollectionPage, SeoCopy } from "@/components/site/CollectionPage";
 
 const QUERY = "tag:birthday";
 
 export const Route = createFileRoute("/birthday-specials")({
   loader: ({ context }) => context.queryClient.ensureQueryData(productsQueryOptions(QUERY)),
-  head: () => ({
-    meta: pageMeta({
+  head: ({ loaderData }) =>
+    pageHead({
       title: "Birthday Flowers & Cakes Delivery in Karachi | Petalegant",
       description:
         "Send birthday flowers, birthday cakes and flower + cake combos in Karachi. Personalised messages available. Starting from PKR 2,500.",
+      path: "/birthday-specials",
+      jsonLd: [
+        breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Birthday Specials", path: "/birthday-specials" },
+        ]),
+        collectionJsonLd("Birthday Specials", "/birthday-specials", loaderData ?? []),
+      ],
     }),
-  }),
   component: BirthdayPage,
 });
 
