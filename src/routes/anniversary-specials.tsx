@@ -1,19 +1,26 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { productsQueryOptions } from "@/lib/shopify";
-import { pageMeta } from "@/lib/seo";
+import { breadcrumbJsonLd, collectionJsonLd, pageHead } from "@/lib/seo";
 import { CollectionPage, SeoCopy } from "@/components/site/CollectionPage";
 
 const QUERY = "tag:anniversary";
 
 export const Route = createFileRoute("/anniversary-specials")({
   loader: ({ context }) => context.queryClient.ensureQueryData(productsQueryOptions(QUERY)),
-  head: () => ({
-    meta: pageMeta({
+  head: ({ loaderData }) =>
+    pageHead({
       title: "Anniversary Flowers & Cakes in Karachi | Red Roses | Petalegant",
       description:
         "Romantic anniversary bouquets, red roses and anniversary cakes delivered in Karachi. Starting from PKR 2,500. Customised designs available.",
+      path: "/anniversary-specials",
+      jsonLd: [
+        breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Anniversary Specials", path: "/anniversary-specials" },
+        ]),
+        collectionJsonLd("Anniversary Specials", "/anniversary-specials", loaderData ?? []),
+      ],
     }),
-  }),
   component: AnniversaryPage,
 });
 

@@ -87,6 +87,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Elegant flower bouquets, celebration cakes and flower + cake combos delivered across Karachi.",
       },
       { name: "author", content: "Petalegant" },
+      // Google Search Console ownership verification — keep this tag.
+      { name: "google-site-verification", content: "-UvDxdsojxRq_WJ8hJfjLFXvqqTHzYXjfSPGVzErwME" },
       { name: "theme-color", content: "#8f1d24" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

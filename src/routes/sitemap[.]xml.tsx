@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { fetchProducts } from "@/lib/shopify";
+import { SITE_URL } from "@/lib/seo";
 
 const STATIC_PATHS = [
   "/",
@@ -16,8 +17,9 @@ const STATIC_PATHS = [
 export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
-      GET: async ({ request }) => {
-        const origin = new URL(request.url).origin;
+      GET: async () => {
+        // Always list the public address, even when served from a preview URL.
+        const origin = SITE_URL;
         const products = await fetchProducts(undefined, 250);
         const urls = [
           ...STATIC_PATHS.map((p) => `${origin}${p}`),

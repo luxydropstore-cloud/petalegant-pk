@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Palette, MessageSquareHeart, CalendarHeart } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { pageMeta } from "@/lib/seo";
+import { pageHead } from "@/lib/seo";
 import { SITE } from "@/config/site";
 import { customOrderMessage, whatsappUrl } from "@/lib/whatsapp";
 import { SectionHeading } from "@/components/site/SectionHeading";
@@ -12,13 +12,13 @@ import g5 from "@/assets/gallery/petalegant-5.webp.asset.json";
 import g6 from "@/assets/gallery/petalegant-6.webp.asset.json";
 
 export const Route = createFileRoute("/custom-orders")({
-  head: () => ({
-    meta: pageMeta({
+  head: () =>
+    pageHead({
       title: "Customised Cakes & Bouquets in Karachi | Petalegant",
       description:
         "Order customised cakes and bouquets in Karachi — personalised messages, themes, colours and initials for birthdays, bridal showers, nikkah and anniversaries. DM for price.",
+      path: "/custom-orders",
     }),
-  }),
   component: CustomOrdersPage,
 });
 

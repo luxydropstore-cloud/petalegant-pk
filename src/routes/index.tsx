@@ -2,7 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { ArrowRight } from "lucide-react";
 import { productsQueryOptions } from "@/lib/shopify";
-import { businessJsonLd, pageMeta } from "@/lib/seo";
+import { businessJsonLd, pageHead, websiteJsonLd } from "@/lib/seo";
+import heroImage from "@/assets/combos/combo-red-roses-chocolate.webp.asset.json";
 import { Button } from "@/components/ui/button";
 import { ProductGrid } from "@/components/site/ProductGrid";
 import { SectionHeading } from "@/components/site/SectionHeading";
@@ -20,14 +21,15 @@ const COMBOS_QUERY = "tag:combo";
 
 export const Route = createFileRoute("/")({
   loader: ({ context }) => context.queryClient.ensureQueryData(productsQueryOptions(COMBOS_QUERY)),
-  head: () => ({
-    meta: pageMeta({
+  head: () =>
+    pageHead({
       title: "Petalegant | Flower Bouquets, Cakes & Combos Delivered in Karachi",
       description:
         "Order elegant flower bouquets, celebration cakes and flower + cake combos in Karachi. Starting from PKR 2,500. Customised cakes & bouquets available — order on WhatsApp.",
+      path: "/",
+      image: heroImage.url,
+      jsonLd: [businessJsonLd, websiteJsonLd],
     }),
-    scripts: [{ type: "application/ld+json", children: JSON.stringify(businessJsonLd) }],
-  }),
   component: Index,
 });
 

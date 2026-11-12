@@ -1,19 +1,26 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { productsQueryOptions } from "@/lib/shopify";
-import { pageMeta } from "@/lib/seo";
+import { breadcrumbJsonLd, collectionJsonLd, pageHead } from "@/lib/seo";
 import { CollectionPage, SeoCopy } from "@/components/site/CollectionPage";
 
 const QUERY = "product_type:Cake";
 
 export const Route = createFileRoute("/cakes")({
   loader: ({ context }) => context.queryClient.ensureQueryData(productsQueryOptions(QUERY)),
-  head: () => ({
-    meta: pageMeta({
+  head: ({ loaderData }) =>
+    pageHead({
       title: "Custom Cakes in Karachi | Birthday & Celebration Cakes | Petalegant",
       description:
         "Beautiful birthday, bridal and celebration cakes in Karachi. Personalised designs and messages available. Starting from PKR 2,500 — DM for price.",
+      path: "/cakes",
+      jsonLd: [
+        breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Cakes", path: "/cakes" },
+        ]),
+        collectionJsonLd("Cakes", "/cakes", loaderData ?? []),
+      ],
     }),
-  }),
   component: CakesPage,
 });
 
