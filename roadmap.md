@@ -9,5 +9,5 @@
 - [x] Hide prices on products; show "Starting from PKR 2,500" + "DM for price"
 - [x] Highlight customised cakes & bouquets
 - [x] WhatsApp +92 349 8731734 and Instagram @petalegant.pk
-- [ ] Google Search Console: verify site, add property, submit sitemap (needs publish so Google sees the ownership tag)
+- [x] Google Search Console: site verified, added, sitemap submitted
 - [ ] Optional: add the products in Shopify for online checkout (owner declined adding them for now)
