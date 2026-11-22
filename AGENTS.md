@@ -31,3 +31,4 @@ use the editor.
 - Product lists fall back to the local catalog in src/lib/catalog.ts (owner photos, WhatsApp-only, no variants) whenever Shopify returns no products — so the shop is never empty while the store has no items.
 - Build every page's head with `pageHead` in src/lib/seo.ts (self-referencing canonical + og:url from `SITE_URL`) so canonical, sitemap and structured data always use the public address, never a preview URL.
 - The Google Search Console `google-site-verification` meta tag in src/routes/__root.tsx proves site ownership; never remove it.
+- Rule: photo .asset.json URLs are rewritten to the absolute Lovable host in vite.config.ts so images work on non-Lovable hosting (Netlify).

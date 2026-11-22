@@ -9,10 +9,27 @@
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
+// Photo pointers (.asset.json) hold site-relative "/__l5e/..." paths that only Lovable hosting
+// serves. Rewrite them to the absolute Lovable address so photos also load when the site is
+// hosted elsewhere (e.g. Netlify).
+const ASSET_HOST = "https://petalegant-pk.lovable.app";
+
 export default defineConfig({
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
     server: { entry: "server" },
+  },
+  vite: {
+    plugins: [
+      {
+        name: "absolute-asset-urls",
+        enforce: "pre",
+        transform(code: string, id: string) {
+          if (!id.split("?")[0]!.endsWith(".asset.json")) return null;
+          return { code: code.replace(/"\/__l5e\//g, `"${ASSET_HOST}/__l5e/`), map: null };
+        },
+      },
+    ],
   },
 });
