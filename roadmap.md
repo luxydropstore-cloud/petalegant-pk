@@ -1,5 +1,7 @@
 # Petalegant roadmap
 
+- [x] Add and verify subtle site-wide scroll animations without changing the design or content.
+
 - [x] Design system (red/white, serif + sans, minimal green)
 - [x] Storefront: product cards, cart drawer, WhatsApp ordering
 - [x] Products shown from the owner's 10 photos (3 combos, 3 bouquets, 4 cakes) — only owner images used
