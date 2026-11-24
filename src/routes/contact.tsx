@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { Truck } from "lucide-react";
+import { Facebook, Truck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -9,7 +9,7 @@ import { pageHead } from "@/lib/seo";
 import { SITE } from "@/config/site";
 import { whatsappUrl, generalMessage } from "@/lib/whatsapp";
 import { SectionHeading } from "@/components/site/SectionHeading";
-import { InstagramIcon, WhatsAppIcon } from "@/components/site/WhatsAppIcon";
+import { InstagramIcon, TikTokIcon, WhatsAppIcon } from "@/components/site/WhatsAppIcon";
 
 export const Route = createFileRoute("/contact")({
   head: () =>
@@ -87,6 +87,27 @@ function ContactPage() {
               <span className="font-display text-xl">{SITE.city} only</span>
             </span>
           </div>
+          {[
+            { name: "Facebook", url: SITE.facebookUrl, icon: Facebook },
+            { name: "TikTok", url: SITE.tiktokUrl, icon: TikTokIcon },
+          ].map((social) => (
+            <a
+              key={social.name}
+              href={social.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Petalegant on ${social.name}`}
+              className="flex items-center gap-4 rounded-lg border border-border p-5 transition-colors hover:border-primary"
+            >
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary-soft text-primary">
+                <social.icon className="h-5 w-5" />
+              </span>
+              <span>
+                <span className="block text-xs tracking-[0.18em] text-muted-foreground uppercase">{social.name}</span>
+                <span className="font-display text-xl">@petalegant.pk</span>
+              </span>
+            </a>
+          ))}
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-5 rounded-lg bg-secondary p-6 md:col-span-3 md:p-8">

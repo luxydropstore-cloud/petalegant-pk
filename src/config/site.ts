@@ -8,6 +8,8 @@ export const SITE = {
   whatsappDisplay: "+92 349 8731734",
   instagramHandle: "petalegant.pk",
   instagramUrl: "https://www.instagram.com/petalegant.pk/",
+  facebookUrl: "https://www.facebook.com/petalegant.pk/",
+  tiktokUrl: "https://www.tiktok.com/@petalegant.pk",
 } as const;
 
 export const NAV_LINKS = [

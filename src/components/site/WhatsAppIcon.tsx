@@ -22,3 +22,11 @@ export function InstagramIcon({ className = "h-4 w-4" }: { className?: string })
     </svg>
   );
 }
+
+export function TikTokIcon({ className = "h-4 w-4" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="currentColor">
+      <path d="M16.7 1h-3.5v14.7a3.1 3.1 0 1 1-2.7-3.1V9a6.7 6.7 0 1 0 6.2 6.7V8.2a8.6 8.6 0 0 0 5 1.6V6.3A5.1 5.1 0 0 1 16.7 1Z" />
+    </svg>
+  );
+}

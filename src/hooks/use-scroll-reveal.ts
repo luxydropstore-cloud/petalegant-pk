@@ -9,7 +9,6 @@ export function useScrollReveal(pathname: string) {
     const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
     const registered = new WeakSet<Element>();
     const animations = new Set<Animation>();
-    const delays = new WeakMap<Element, number>();
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -17,23 +16,25 @@ export function useScrollReveal(pathname: string) {
           if (!entry.isIntersecting) continue;
           observer.unobserve(entry.target);
           if (motionPreference.matches || !(entry.target instanceof HTMLElement)) continue;
+          // Fast scrolling or anchor navigation must never move already-visible content.
+          if (entry.boundingClientRect.top < window.innerHeight - 120) continue;
 
           const animation = entry.target.animate(
             [
-              { opacity: 0, transform: "translateY(22px)" },
-              { opacity: 1, transform: "translateY(0)" },
+              { transform: "translateY(12px)" },
+              { transform: "translateY(0)" },
             ],
             {
-              duration: 650,
-              delay: delays.get(entry.target) ?? 0,
-              easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+              duration: 850,
+              easing: "cubic-bezier(0.25, 0.1, 0.25, 1)",
             },
           );
           animations.add(animation);
           animation.onfinish = () => animations.delete(animation);
         }
       },
-      { threshold: 0, rootMargin: "0px 0px -32px 0px" },
+      // Begin just before content enters the screen, rather than fading it out on screen.
+      { threshold: 0, rootMargin: "0px 0px 80px 0px" },
     );
 
     const register = () => {
@@ -44,8 +45,6 @@ export function useScrollReveal(pathname: string) {
         if (registered.has(element) || element.parentElement?.closest(selector)) continue;
         registered.add(element);
         if (element.getBoundingClientRect().top < window.innerHeight) continue;
-        const siblings = Array.from(element.parentElement?.children ?? []);
-        delays.set(element, (siblings.indexOf(element) % 3) * 70);
         observer.observe(element);
       }
     };

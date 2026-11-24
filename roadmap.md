@@ -1,6 +1,8 @@
 # Petalegant roadmap
 
 - [x] Add and verify subtle site-wide scroll animations without changing the design or content.
+- [x] Refine scroll animations to remove abrupt fades and delayed movement.
+- [x] Add the owner's Facebook and TikTok links alongside existing social links.
 
 - [x] Design system (red/white, serif + sans, minimal green)
 - [x] Storefront: product cards, cart drawer, WhatsApp ordering

@@ -1,9 +1,9 @@
 import { Link } from "@tanstack/react-router";
-import { MapPin, Truck } from "lucide-react";
+import { Facebook, MapPin, Truck } from "lucide-react";
 import { SITE } from "@/config/site";
 import { whatsappUrl, generalMessage } from "@/lib/whatsapp";
 import { Logo } from "./Header";
-import { InstagramIcon, WhatsAppIcon } from "./WhatsAppIcon";
+import { InstagramIcon, TikTokIcon, WhatsAppIcon } from "./WhatsAppIcon";
 import { Leaf } from "./Leaf";
 
 const SHOP_LINKS = [
@@ -36,6 +36,22 @@ export function Footer() {
             >
               <InstagramIcon />
             </a>
+            {[
+              { name: "Facebook", url: SITE.facebookUrl, icon: Facebook },
+              { name: "TikTok", url: SITE.tiktokUrl, icon: TikTokIcon },
+            ].map((social) => (
+              <a
+                key={social.name}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Petalegant on ${social.name}`}
+                title={social.name}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-primary/25 text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+              >
+                <social.icon className="h-4 w-4" />
+              </a>
+            ))}
             <a
               href={whatsappUrl(generalMessage)}
               target="_blank"
