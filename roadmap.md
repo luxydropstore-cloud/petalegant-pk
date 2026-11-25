@@ -5,6 +5,8 @@
 - [x] Add the owner's Facebook and TikTok links alongside existing social links.
 - [x] Add the owner's LinkedIn company page to site links, footer, Contact page and business information.
 - [x] Use the owner's transparent logo everywhere the logo appears (header, footer, page previews).
+- [x] Replace the 7 bouquet/cake product photos with the owner's logo-free versions.
+- [x] Add the 50% advance payment booking note to the footer.
 
 - [x] Design system (red/white, serif + sans, minimal green)
 - [x] Storefront: product cards, cart drawer, WhatsApp ordering

@@ -118,6 +118,11 @@ export function Footer() {
               <span>{SITE.city}, Pakistan</span>
             </li>
           </ul>
+          <p className="mt-6 rounded-lg border border-primary/20 bg-background/60 p-4 text-xs leading-relaxed text-muted-foreground">
+            <span className="font-medium text-foreground">Booking note:</span> Every order is
+            confirmed with a 50% advance payment — it reserves your date and lets us prepare your
+            flowers and cake fresh, just for you. The remaining balance is paid on delivery.
+          </p>
         </div>
       </div>
       <div className="border-t border-border/80">
