@@ -42,7 +42,7 @@ function BestsellingCombos() {
           align="left"
           eyebrow="Bestselling combos"
           title="Flowers & cake, perfectly paired"
-          intro="Our most-loved combos — a bouquet and a cake in one thoughtful gift. Starting from PKR 2,500."
+          intro="Our most-loved combos  a bouquet and a cake in one thoughtful gift. Starting from PKR 2,500."
         />
         <Button variant="heroOutline" size="lg" asChild>
           <Link to="/combos">

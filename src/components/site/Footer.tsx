@@ -23,7 +23,7 @@ export function Footer() {
         <div className="md:col-span-4">
           <Logo className="h-12" />
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-muted-foreground">
-            Elegant flower bouquets, celebration cakes and thoughtful combos — beautifully made and
+            Elegant flower bouquets, celebration cakes and thoughtful combos  beautifully made and
             delivered across {SITE.city}.
           </p>
           <div className="mt-6 flex gap-2">
@@ -120,8 +120,8 @@ export function Footer() {
           </ul>
           <p className="mt-6 rounded-lg border border-primary/20 bg-background/60 p-4 text-xs leading-relaxed text-muted-foreground">
             <span className="font-medium text-foreground">Booking note:</span> Every order is
-            confirmed with a 50% advance payment — it reserves your date and lets us prepare your
-            flowers and cake fresh, just for you. The remaining balance is paid on delivery.
+            confirmed with a 50% advance payment  it reserves your date and lets us prepare your
+            flowers and cake fresh, just for you. The remaining balance is paid on delivery day.
           </p>
         </div>
       </div>

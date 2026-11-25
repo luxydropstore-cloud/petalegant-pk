@@ -277,7 +277,7 @@ export function CustomOrderBanner() {
           <h2 className="mt-3 text-4xl text-primary-deep md:text-5xl">Customised cakes & bouquets</h2>
           <p className="mt-5 leading-relaxed text-muted-foreground">
             Have a theme, colour, message or design in mind? Share your idea and we'll create a cake or
-            bouquet that's entirely yours — for birthdays, bridal showers, nikkah, anniversaries and more.
+            bouquet that's entirely yours  for birthdays, bridal showers, nikkah, anniversaries and more.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Button variant="whatsapp" size="xl" asChild>
