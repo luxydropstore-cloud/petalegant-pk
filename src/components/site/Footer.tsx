@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Facebook, MapPin, Truck } from "lucide-react";
+import { Facebook, Linkedin, MapPin, Truck } from "lucide-react";
 import { SITE } from "@/config/site";
 import { whatsappUrl, generalMessage } from "@/lib/whatsapp";
 import { Logo } from "./Header";
@@ -39,6 +39,7 @@ export function Footer() {
             {[
               { name: "Facebook", url: SITE.facebookUrl, icon: Facebook },
               { name: "TikTok", url: SITE.tiktokUrl, icon: TikTokIcon },
+              { name: "LinkedIn", url: SITE.linkedinUrl, icon: Linkedin },
             ].map((social) => (
               <a
                 key={social.name}

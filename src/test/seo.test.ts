@@ -13,6 +13,11 @@ describe("SEO head", () => {
     expect(businessJsonLd['sameAs']).toContain("https://www.tiktok.com/@petalegant.pk");
   });
 
+  it("uses the owner's LinkedIn company page in site links and business information", () => {
+    expect(SITE.linkedinUrl).toBe("https://www.linkedin.com/company/petalegant");
+    expect(businessJsonLd['sameAs']).toContain("https://www.linkedin.com/company/petalegant");
+  });
+
   it("points the canonical link at the page itself on the public site", () => {
     const head = pageHead({ title: "Cakes", description: "d", path: "/cakes" });
     expect(head.links).toEqual([{ rel: "canonical", href: "https://petalegant-pk.lovable.app/cakes" }]);

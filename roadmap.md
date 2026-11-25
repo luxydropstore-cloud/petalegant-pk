@@ -3,6 +3,8 @@
 - [x] Add and verify subtle site-wide scroll animations without changing the design or content.
 - [x] Refine scroll animations to remove abrupt fades and delayed movement.
 - [x] Add the owner's Facebook and TikTok links alongside existing social links.
+- [x] Add the owner's LinkedIn company page to site links, footer, Contact page and business information.
+- [x] Use the owner's transparent logo everywhere the logo appears (header, footer, page previews).
 
 - [x] Design system (red/white, serif + sans, minimal green)
 - [x] Storefront: product cards, cart drawer, WhatsApp ordering

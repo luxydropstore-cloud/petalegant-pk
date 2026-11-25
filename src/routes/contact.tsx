@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { Facebook, Truck } from "lucide-react";
+import { Facebook, Linkedin, Truck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -88,8 +88,14 @@ function ContactPage() {
             </span>
           </div>
           {[
-            { name: "Facebook", url: SITE.facebookUrl, icon: Facebook },
-            { name: "TikTok", url: SITE.tiktokUrl, icon: TikTokIcon },
+            { name: "Facebook", url: SITE.facebookUrl, icon: Facebook, handle: `@${SITE.instagramHandle}` },
+            { name: "TikTok", url: SITE.tiktokUrl, icon: TikTokIcon, handle: `@${SITE.instagramHandle}` },
+            {
+              name: "LinkedIn",
+              url: SITE.linkedinUrl,
+              icon: Linkedin,
+              handle: "company/petalegant",
+            },
           ].map((social) => (
             <a
               key={social.name}
@@ -104,7 +110,7 @@ function ContactPage() {
               </span>
               <span>
                 <span className="block text-xs tracking-[0.18em] text-muted-foreground uppercase">{social.name}</span>
-                <span className="font-display text-xl">@petalegant.pk</span>
+                <span className="font-display text-xl">{social.handle}</span>
               </span>
             </a>
           ))}

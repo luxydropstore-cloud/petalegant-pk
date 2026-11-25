@@ -10,6 +10,7 @@ export const SITE = {
   instagramUrl: "https://www.instagram.com/petalegant.pk/",
   facebookUrl: "https://www.facebook.com/petalegant.pk/",
   tiktokUrl: "https://www.tiktok.com/@petalegant.pk",
+  linkedinUrl: "https://www.linkedin.com/company/petalegant",
 } as const;
 
 export const NAV_LINKS = [

@@ -111,7 +111,7 @@ export const businessJsonLd: JsonLd = {
   priceRange: "PKR 2,500+",
   areaServed: { "@type": "City", name: "Karachi" },
   address: { "@type": "PostalAddress", addressLocality: "Karachi", addressCountry: "PK" },
-  sameAs: [SITE.instagramUrl, SITE.facebookUrl, SITE.tiktokUrl],
+  sameAs: [SITE.instagramUrl, SITE.facebookUrl, SITE.tiktokUrl, SITE.linkedinUrl],
 };
 
 export const websiteJsonLd: JsonLd = {
