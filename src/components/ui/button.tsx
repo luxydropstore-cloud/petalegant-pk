@@ -19,6 +19,8 @@ const buttonVariants = cva(
         hero: "rounded-full bg-primary text-primary-foreground tracking-wide shadow-elegant hover:bg-primary-deep hover:-translate-y-0.5 transition-all duration-300",
         heroOutline:
           "rounded-full border border-primary/70 bg-background/80 text-primary tracking-wide backdrop-blur-sm hover:bg-primary hover:text-primary-foreground transition-all duration-300",
+        heroLight: "rounded-md bg-primary-foreground text-primary-deep hover:bg-primary-soft",
+        heroLightOutline: "rounded-md border border-primary-foreground/60 bg-transparent text-primary-foreground hover:bg-primary-foreground/10",
         soft: "rounded-full bg-primary-soft text-primary-deep hover:bg-accent transition-colors",
         whatsapp:
           "rounded-full bg-whatsapp text-whatsapp-foreground tracking-wide hover:bg-primary-deep transition-colors",

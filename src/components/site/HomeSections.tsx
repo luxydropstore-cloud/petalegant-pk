@@ -6,6 +6,7 @@ import { customOrderMessage, whatsappUrl } from "@/lib/whatsapp";
 import { SectionHeading } from "./SectionHeading";
 import { Leaf } from "./Leaf";
 import { InstagramIcon, WhatsAppIcon } from "./WhatsAppIcon";
+import { FloralSculpture } from "./FloralSculpture";
 
 import comboRedRoses from "@/assets/combos/combo-red-roses-chocolate.webp.asset.json";
 import comboSingleRose from "@/assets/combos/combo-single-rose-chocolate.webp.asset.json";
@@ -20,41 +21,40 @@ import g7 from "@/assets/gallery/petalegant-7.webp.asset.json";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-background">
-      <div className="container-page grid items-center gap-10 py-10 md:grid-cols-2 md:gap-14 md:py-16 lg:py-20">
-        <div className="relative order-1 md:order-2">
-          <div className="absolute -inset-3 -z-0 rounded-lg bg-primary-soft/60 md:-inset-5" aria-hidden />
+    <section className="home-hero relative isolate overflow-hidden bg-primary-deep text-primary-foreground">
           <img
             src={comboRedRoses.url}
             alt="Red rose bouquet with a chocolate Happy Birthday cake by Petalegant"
             width={1215}
             height={1295}
             fetchPriority="high"
-            className="relative aspect-[15/16] w-full rounded-lg object-cover shadow-elegant"
+            className="hero-photograph absolute inset-0 h-full w-full object-cover"
           />
-        </div>
-        <div className="order-2 md:order-1">
-          <p className="eyebrow animate-fade-up flex items-center gap-2">
+          <div className="hero-shade absolute inset-0" aria-hidden="true" />
+      <div className="container-page relative flex h-full items-center py-12">
+        <div className="hero-copy max-w-lg">
+          <p className="font-display text-3xl font-semibold">Petalegant</p>
+          <p className="mt-3 flex items-center gap-2 text-xs uppercase">
             <Leaf className="h-3.5 w-3.5" /> Flowers & cakes · {SITE.city}
           </p>
-          <h1 className="animate-fade-up mt-4 text-[2.6rem] leading-[1.02] text-primary-deep [animation-delay:120ms] md:text-[3.6rem] lg:text-[4.2rem]">
+          <h1 className="mt-5 text-4xl leading-[1.05] md:text-5xl lg:text-6xl">
             Make Every Moment a Little More Beautiful
           </h1>
-          <p className="animate-fade-up mt-5 max-w-md text-base leading-relaxed text-muted-foreground [animation-delay:240ms] md:text-lg">
+          <p className="mt-5 max-w-sm text-base leading-relaxed text-primary-foreground/85">
             Thoughtful flowers and delicious cakes, beautifully paired for every celebration.
           </p>
-          <div className="animate-fade-up mt-8 flex flex-col gap-3 [animation-delay:360ms] sm:flex-row">
-            <Button variant="hero" size="xl" asChild>
+          <div className="mt-7 flex flex-wrap gap-3">
+            <Button variant="heroLight" size="xl" asChild>
               <Link to="/combos">
                 Shop Combos <ArrowRight />
               </Link>
             </Button>
-            <Button variant="heroOutline" size="xl" asChild>
+            <Button variant="heroLightOutline" size="xl" asChild>
               <Link to="/flower-bouquets">Explore Bouquets</Link>
             </Button>
           </div>
-          <p className="animate-fade-up mt-6 text-sm text-foreground/70 [animation-delay:480ms]">
-            Starting from <span className="font-medium text-primary">{SITE.startingPrice}</span> ·
+          <p className="mt-6 max-w-sm text-xs leading-relaxed text-primary-foreground/85">
+            Starting from <span className="font-medium">{SITE.startingPrice}</span> ·
             Customised cakes & bouquets available
           </p>
         </div>
@@ -73,20 +73,18 @@ const CATEGORIES = [
 
 export function ShopByCategory() {
   return (
-    <section className="container-page py-20 md:py-28">
+    <section className="container-page py-14 md:py-20">
       <SectionHeading
         eyebrow="Shop by category"
         title="Something lovely for everyone"
         intro="Browse bouquets, cakes and our signature flower + cake combos, or find the perfect gift for a birthday or anniversary."
       />
-      <div className="mt-14 grid grid-cols-2 gap-4 md:grid-cols-6 md:gap-5">
+      <div className="mt-10 grid grid-cols-2 gap-4 lg:grid-cols-5 lg:gap-5">
         {CATEGORIES.map((c, i) => (
           <Link
             key={c.to}
             to={c.to}
-            className={`group relative overflow-hidden rounded-lg bg-secondary ${
-              i === 0 ? "col-span-2 row-span-2 aspect-square md:col-span-2 md:aspect-auto" : "aspect-[4/5] md:col-span-2"
-            } ${i >= 3 ? "md:col-span-3 md:aspect-[16/10]" : ""}`}
+            className={`category-tile group relative aspect-[4/5] overflow-hidden rounded-lg bg-secondary ${i === 4 ? "col-span-2 aspect-[2/1] lg:col-span-1 lg:aspect-[4/5]" : ""}`}
           >
             <img
               src={c.img}
@@ -96,9 +94,9 @@ export function ShopByCategory() {
               height={c.h}
               className="img-zoom absolute inset-0 h-full w-full object-cover group-hover:scale-105"
             />
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary-deep/80 via-primary-deep/30 to-transparent p-4 pt-16 md:p-6 md:pt-20">
-              <h3 className="font-display text-xl text-primary-foreground md:text-2xl">{c.label}</h3>
-              <span className="mt-1 inline-flex items-center gap-1 text-xs tracking-[0.18em] text-primary-foreground/85 uppercase">
+            <div className="category-caption absolute inset-x-0 bottom-0 p-4 pt-14">
+              <h3 className="font-display text-xl text-primary-foreground">{c.label}</h3>
+              <span className="mt-2 inline-flex items-center gap-1 text-xs text-primary-foreground/85 uppercase">
                 Shop now <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
               </span>
             </div>
@@ -122,10 +120,10 @@ export function WhyChoose() {
     <section className="bg-secondary py-20 md:py-28">
       <div className="container-page">
         <SectionHeading eyebrow="Why Petalegant" title="Why choose Petalegant?" />
-        <div className="mt-14 grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
           {REASONS.map((r) => (
-            <div key={r.title} className="bg-background p-7 transition-colors hover:bg-primary-soft/60">
-              <r.icon className="h-7 w-7 text-primary" strokeWidth={1.3} />
+            <div key={r.title} className="border-t border-primary/20 pt-6">
+              <r.icon className="h-7 w-7 text-primary" strokeWidth={1.25} />
               <h3 className="mt-5 text-xl text-primary-deep">{r.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{r.text}</p>
             </div>
@@ -154,7 +152,7 @@ export function SpecialMoments() {
       <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {MOMENTS.map((m) => (
           <Link key={m.title} to={m.to} className="group block">
-            <div className="aspect-[3/4] overflow-hidden rounded-lg bg-secondary">
+            <div className="editorial-photo aspect-[4/5] overflow-hidden rounded-lg bg-secondary">
               <img
                 src={m.img}
                 alt={`${m.title} flowers and cake by Petalegant`}
@@ -234,7 +232,7 @@ export function InstagramSection() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="View on Instagram"
-            className={`group relative overflow-hidden rounded-lg bg-secondary ${i === 0 ? "md:col-span-2 md:row-span-2" : ""}`}
+            className="group relative aspect-square overflow-hidden rounded-lg bg-secondary"
           >
             <img
               src={g.url}
@@ -253,7 +251,7 @@ export function InstagramSection() {
           href={SITE.instagramUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="col-span-2 flex aspect-[2/1] flex-col items-center justify-center gap-3 rounded-lg bg-primary md:col-span-1 md:aspect-square text-center text-primary-foreground transition-colors hover:bg-primary-deep"
+          className="col-span-2 flex min-h-36 flex-col items-center justify-center gap-3 rounded-lg bg-primary md:col-span-4 text-center text-primary-foreground transition-colors hover:bg-primary-deep"
         >
           <InstagramIcon className="h-8 w-8" />
           <span className="font-display text-2xl">Follow us</span>
@@ -268,10 +266,6 @@ export function CustomOrderBanner() {
   return (
     <section className="bg-secondary">
       <div className="container-page grid items-center gap-10 py-16 md:grid-cols-2 md:py-20">
-        <div className="grid grid-cols-2 gap-3">
-          <img src={g5.url} alt="Custom bride to be cake by Petalegant" loading="lazy" width={900} height={900} className="aspect-[4/5] w-full rounded-lg object-cover" />
-          <img src={g3.url} alt="Custom pink rose bouquet by Petalegant" loading="lazy" width={900} height={900} className="mt-10 aspect-[4/5] w-full rounded-lg object-cover" />
-        </div>
         <div>
           <p className="eyebrow">Made just for you</p>
           <h2 className="mt-3 text-4xl text-primary-deep md:text-5xl">Customised cakes & bouquets</h2>
@@ -288,6 +282,13 @@ export function CustomOrderBanner() {
             <Button variant="heroOutline" size="xl" asChild>
               <Link to="/custom-orders">Learn more</Link>
             </Button>
+          </div>
+        </div>
+        <div className="relative">
+          <FloralSculpture />
+          <div className="grid grid-cols-2 gap-4">
+            <img src={g5.url} alt="Custom bride to be cake by Petalegant" loading="lazy" width={900} height={900} className="editorial-photo aspect-square w-full rounded-lg object-cover" />
+            <img src={g3.url} alt="Custom pink rose bouquet by Petalegant" loading="lazy" width={900} height={900} className="editorial-photo aspect-square w-full rounded-lg object-cover" />
           </div>
         </div>
       </div>

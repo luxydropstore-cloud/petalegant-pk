@@ -61,6 +61,13 @@ function Index() {
   return (
     <>
       <Hero />
+      <div className="border-b border-border bg-secondary">
+        <div className="container-page flex flex-wrap items-center justify-center gap-x-8 gap-y-2 py-4 text-xs text-primary-deep">
+          <span>Flowers & cakes · Karachi</span>
+          <span>Starting from PKR 2,500</span>
+          <span>Customised cakes & bouquets available</span>
+        </div>
+      </div>
       <ShopByCategory />
       <BestsellingCombos />
       <WhyChoose />

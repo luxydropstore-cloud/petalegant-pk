@@ -166,7 +166,7 @@
   h4 {
     font-family: var(--font-display);
     font-weight: 600;
-    letter-spacing: -0.01em;
+    letter-spacing: 0;
     line-height: 1.08;
   }
 }
@@ -192,6 +192,40 @@
 
 @utility img-zoom {
   transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root {
+  --hero-overlay: linear-gradient(90deg, var(--primary-deep) 0%, color-mix(in oklab, var(--primary-deep) 92%, transparent) 28%, color-mix(in oklab, var(--primary-deep) 30%, transparent) 58%, transparent 82%);
+  --photo-caption: linear-gradient(0deg, color-mix(in oklab, var(--primary-deep) 92%, transparent), transparent);
+}
+
+.home-hero { height: 520px; }
+.hero-photograph { object-position: 80% 55%; }
+.hero-shade { background: var(--hero-overlay); }
+.hero-copy { width: 46%; }
+.category-caption { background: var(--photo-caption); }
+.category-tile { transition: box-shadow 450ms ease; }
+.floral-sculpture { width: 100%; height: 280px; touch-action: pan-y; }
+.floral-sculpture canvas { display: block; width: 100%; height: 100%; }
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .home-hero { height: min(520px, calc(100svh - 175px)); min-height: 450px; }
+  .home-hero > .container-page { padding-block: 24px; }
+  .hero-copy h1 { font-size: 40px; }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .editorial-photo { transition: transform 650ms ease, box-shadow 650ms ease; }
+  .editorial-photo:hover { transform: perspective(1000px) rotateY(-3deg) rotateX(2deg); box-shadow: var(--shadow-elegant-value); }
+  .category-tile:hover { box-shadow: var(--shadow-elegant-value); }
+}
+
+@media (max-width: 767px) {
+  .home-hero { height: 590px; }
+  .hero-photograph { object-position: 62% center; }
+  .hero-shade { background: linear-gradient(90deg, color-mix(in oklab, var(--primary-deep) 94%, transparent), color-mix(in oklab, var(--primary-deep) 60%, transparent)); }
+  .hero-copy { width: 100%; max-width: 340px; }
+  .floral-sculpture { height: 230px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

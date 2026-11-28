@@ -1,5 +1,8 @@
 # Petalegant roadmap
 
+- [x] Refine the homepage photo composition and add restrained interactive 3D floral effects.
+- [x] Show and test full advance payment for orders above PKR 6,000.
+
 - [x] Add and verify subtle site-wide scroll animations without changing the design or content.
 - [x] Refine scroll animations to remove abrupt fades and delayed movement.
 - [x] Add the owner's Facebook and TikTok links alongside existing social links.

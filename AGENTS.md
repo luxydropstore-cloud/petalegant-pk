@@ -33,3 +33,5 @@ use the editor.
 - The Google Search Console `google-site-verification` meta tag in src/routes/__root.tsx proves site ownership; never remove it.
 - Rule: photo .asset.json URLs are rewritten to the absolute Lovable host in vite.config.ts so images work on non-Lovable hosting (Netlify).
 - Scroll reveals use the shared client-only useScrollReveal hook with IntersectionObserver and native animations; keep content visible by default, avoid nested reveals, and respect reduced-motion preferences to preserve accessibility and crawling.
+- Decorative 3D flowers dynamically load Three.js inside a client effect, dispose GPU resources, and respect reduced motion; this keeps SSR safe and real product photos independent of WebGL.
+- Keep the advance-payment threshold and footer wording together in src/lib/booking.ts with boundary tests so the displayed booking policy remains consistent.

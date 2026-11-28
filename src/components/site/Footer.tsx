@@ -5,6 +5,7 @@ import { whatsappUrl, generalMessage } from "@/lib/whatsapp";
 import { Logo } from "./Header";
 import { InstagramIcon, TikTokIcon, WhatsAppIcon } from "./WhatsAppIcon";
 import { Leaf } from "./Leaf";
+import { BOOKING_NOTE } from "@/lib/booking";
 
 const SHOP_LINKS = [
   { to: "/shop", label: "Shop All" },
@@ -119,9 +120,7 @@ export function Footer() {
             </li>
           </ul>
           <p className="mt-6 rounded-lg border border-primary/20 bg-background/60 p-4 text-xs leading-relaxed text-muted-foreground">
-            <span className="font-medium text-foreground">Booking note:</span> Every order is
-            confirmed with a 50% advance payment  it reserves your date and lets us prepare your
-            flowers and cake fresh, just for you. The remaining balance is paid on delivery day.
+            <span className="font-medium text-foreground">Booking note:</span> {BOOKING_NOTE}
           </p>
         </div>
       </div>
